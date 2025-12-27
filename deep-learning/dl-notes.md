@@ -1,4 +1,4 @@
-# Deep Learning Interview Questions & Notes
+# Deep Learning Questions & Notes
 
 This document summarizes common **Deep Learning questions and answers**, with clarifications added for better understanding.
 
