@@ -43,7 +43,7 @@ LLM-DL-notes/
 └── README.md
 ```
 
-Notes
+## Notes
 
 These are personal learning notes intended to emphasize understanding fundamentals and training dynamics.
 
