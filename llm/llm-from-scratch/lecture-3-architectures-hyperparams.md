@@ -1,7 +1,7 @@
 # CS336: Language Modeling from Scratch  
 ## Lecture 3 — Transformer Architecture & Hyperparameters
 
-These notes summarize **Lecture 3** of *Stanford CS336: Language Modeling from Scratch*, focusing on **modern Transformer architecture consensus** and **empirically validated hyperparameter choices** derived from large-scale LLMs. :contentReference[oaicite:0]{index=0}
+These notes summarize **Lecture 3** of [*Stanford CS336: Language Modeling from Scratch (Spring 2025)*](https://www.youtube.com/playlist?list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_), focusing on **modern Transformer architecture consensus** and **empirically validated hyperparameter choices** derived from large-scale LLMs. :contentReference[oaicite:0]{index=0}
 
 ---
 
