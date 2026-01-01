@@ -46,14 +46,14 @@ Nearly all modern LLMs use pre-norm.
 ### 3.2 RMSNorm vs LayerNorm
 
 LayerNorm:
-\[
+$$
 \text{LN}(x) = \gamma \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
-\]
+$$
 
 RMSNorm:
-\[
+$$
 \text{RMSNorm}(x) = \gamma \frac{x}{\sqrt{\mathbb{E}[x^2] + \epsilon}}
-\]
+$$
 
 Key differences:
 - No mean subtraction
@@ -89,9 +89,9 @@ Modern models favor **Gated Linear Units (GLUs)**:
 - ReGLU, GeGLU, **SwiGLU** (most common)
 
 General form:
-\[
+$$
 \text{MLP}(x) = W_2 \big( \phi(xW_1) \odot (xV) \big)
-\]
+$$
 
 Where:
 - `φ` = activation (ReLU, GeLU, Swish)
@@ -153,14 +153,14 @@ Let:
 
 ### Standard Rules
 - **ReLU / GeLU MLP**:  
-  \[
+  $$
   d_{ff} \approx 4 \times d_{model}
-  \]
+  $$
 
 - **GLU-based MLPs** (parameter-matched):  
-  \[
+  $$
   d_{ff} \approx \frac{8}{3} \times d_{model} \ (\approx 2.6\times)
-  \]
+  $$
 
 These ratios are widely used and empirically validated.
 
@@ -174,9 +174,9 @@ These ratios are widely used and empirically validated.
 ## 8. Attention Head Dimensions
 
 Consensus choice:
-\[
+$$
 d_{model} = n_{heads} \times d_{head}
-\]
+$$
 
 - Keeps per-head dimension fixed
 - Avoids low-rank attention bottlenecks
@@ -189,9 +189,10 @@ This hyperparameter is rarely tuned in practice.
 ## 9. Depth–Width Aspect Ratio
 
 Define:
-\[
-\text{Aspect ratio} = \frac{d_{model}}{n_{layers}}
-\]
+
+$$
+\text{Aspect ratio} = \frac{d_{\text{model}}}{n_{\text{layers}}}
+$$
 
 Empirical consensus:
 - ~**128 hidden dimensions per layer**
@@ -243,3 +244,27 @@ Weight decay is used to **optimize better**, not to prevent overfitting.
 - Most hyperparameters have robust, well-tested defaults
 - Architectural “details” (norms, gating, bias) materially affect trainability
 - Deviations are possible, but defaults are safe and effective
+
+
+## 13. Transformer Hyperparameter Cheat Sheet (Modern Defaults)
+
+| Component | Symbol | Common Default | Notes / Rationale |
+|---------|--------|----------------|-------------------|
+| Model width | `d_model` | Scale-dependent | Primary knob controlling capacity |
+| Number of layers | `n_layers` | `d_model / 128` | Matches the aspect-ratio sweet spot |
+| Aspect ratio | `d_model / n_layers` | ≈ **128** | Empirical optimum across scales |
+| Attention heads | `n_heads` | `d_model / d_head` | Usually chosen to keep ratio consistent |
+| Head dimension | `d_head` | 64 or 128 | Fixed per-head dimension is common |
+| Attention dim ratio | `d_model : (n_heads × d_head)` | **1 : 1** | Most models follow this |
+| MLP expansion (ReLU/GeLU) | `d_ff` | `4 × d_model` | Robust default |
+| MLP expansion (GLU) | `d_ff` | `(8/3) × d_model ≈ 2.6×` | Parameter-matched with non-GLU MLP |
+| Activation | — | **SwiGLU** | Dominant modern choice |
+| Normalization placement | — | **Pre-norm** | Key for stable training |
+| Norm type | — | **RMSNorm** | Faster; fewer params; similar quality |
+| Bias terms | — | **None** | Often improves stability + reduces memory traffic |
+| Position embedding | — | **RoPE** | Relative positions; supports extrapolation |
+| Transformer block | — | Serial | Parallel blocks used selectively |
+| Vocabulary size | `|V|` | 100k–250k | Typical for multilingual / production |
+| Dropout | — | 0 or very small | Often omitted in pretraining |
+| Weight decay | — | Non-zero | Used for optimization dynamics (not overfitting) |
+| Training epochs | — | ≈ 1 | Data-rich, compute-limited regime |

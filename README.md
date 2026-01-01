@@ -26,6 +26,7 @@ The notes are organized by topic and will continue to evolve over time.
 #### LLM from Scratch
 - [Lecture 1: Overview & Tokenization](llm/llm-from-scratch/lecture-1-overview-tokenization.md)
 - [Lecture 2: Resource Accounting](llm/llm-from-scratch/lecture-2-resource-accounting.md)
+- [Lecture 3: Architectures, Hyperparameters](llm/llm-from-scratch/lecture-3-architectures-hyperparams.md)
 
 ---
 
