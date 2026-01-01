@@ -145,6 +145,9 @@ This rule generalizes:
 
 Other operations are typically negligible compared to matmuls at scale.
 
+- Notes:
+Matrix multiplication costs scale as ~2 × (product of dimensions) due to one multiply and one add per inner-dimension element. In Transformers, summing this cost across all linear layers gives forward-pass compute of ~2 × parameters × tokens, where tokens equal batch size × sequence length and parameters include all model weight matrices. Accounting for both forward and backward passes yields the commonly used training estimate ~6 × parameters × tokens, which reliably approximates dense LLM training compute at scale.
+
 ---
 
 ## 8. FLOPs vs FLOP/s and Model FLOPs Utilization (MFU)
