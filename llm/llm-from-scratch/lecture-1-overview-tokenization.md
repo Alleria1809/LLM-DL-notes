@@ -2,7 +2,6 @@
 ## Lecture 1 — Overview & Tokenization
 
 These notes summarize **Lecture 1** of [*Stanford CS336: Language Modeling from Scratch (Spring 2025)*](https://www.youtube.com/playlist?list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_), based solely on the lecture transcript.  
-:contentReference[oaicite:0]{index=0}
 
 ---
 
@@ -195,6 +194,9 @@ Across all course components:
 - Architecture → compute-efficient blocks
 - Training → often single epoch (see more data, not same data)
 - Scaling laws → extrapolate cheaply
+   ![IsoFLOP curves](../images/scaling-law.png)
+
+   For a fixed compute budget (approximately constant $𝑁×𝑇$), training loss as a function of model size exhibits a U-shaped curve: small models underfit due to limited capacity, while large models underperform because they are undertrained on too few tokens. The minimum of each IsoFLOP curve defines a compute-optimal balance where the number of training tokens scales linearly with the number of parameters. Empirically, this optimal token–parameter ratio is on the order of 10–20 tokens per parameter (e.g., ~20 in Chinchilla), though the exact constant depends on data quality, architecture, and training recipe.
 - Data → aggressive filtering
 - Alignment → reduce base model size needed
 

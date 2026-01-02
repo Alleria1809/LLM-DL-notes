@@ -1,8 +1,7 @@
 # CS336: Language Modeling from Scratch  
 ## Lecture 2 — PyTorch Primitives & Resource Accounting
 
-These notes summarize **Lecture 2** of [*Stanford CS336: Language Modeling from Scratch (Spring 2025)*](https://www.youtube.com/playlist?list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_), focusing on PyTorch mechanics and systematic accounting of memory and compute.  
-:contentReference[oaicite:1]{index=1}
+These notes summarize **Lecture 2** of [*Stanford CS336: Language Modeling from Scratch (Spring 2025)*](https://www.youtube.com/playlist?list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_), focusing on PyTorch mechanics and systematic accounting of memory and compute.
 
 ---
 
